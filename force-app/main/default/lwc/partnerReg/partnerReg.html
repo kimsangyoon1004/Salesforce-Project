@@ -1,0 +1,222 @@
+<template>
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdL00000KZLm1" method="POST">
+        <input type=hidden name="oid" value="00DdL00000KZLm1">
+        <input type="hidden" name="first_name" value=""/>
+        <input type="hidden" name="debug" value=1>                             
+    <input type="hidden" name="debugEmail" value="jkjongwon@gmail.com"> 
+    <!-- <input type="hidden" name="recordType" value="012dL0000052Msp"/> -->
+    <!-- <input type="hidden" name="lead_status" value="입점_신청"/> -->
+    <!-- <input type=hidden name="retURL" value="https://1derfulday-dev-ed.develop.my.site.com/partner/s/thank-you"> -->
+    <lightning-card title="사업자 인증" icon-name="utility:form">
+        <div class="slds-p-around_small">
+            <p class="info-text">
+                ※ 입 · 퇴점 여부를 확인 후 다음 절차를 진행할 수 있습니다.
+            </p>
+</div>
+            <lightning-layout>
+                <lightning-layout-item padding="around-small">
+                    <label for="recordType">Lead Record Type</label><select  class="slds-select" id="recordType" name="recordType"><option value="">--None--</option><option value="012dL0000052NiP">1</option>
+                        <option value="012dL0000052Msp">2</option>
+                        </select>
+                    <lightning-input 
+                        label="사업자 등록번호"
+                        name="00NdL00000EO7LF"
+                        placeholder="-없이 입력"
+                        value={businessLicenseNumber}
+                        onchange={handleChange}
+                        data-field="businessLicenseNumber"
+                        required>
+                    </lightning-input>
+                </lightning-layout-item>
+                
+            </lightning-layout>
+            <lightning-layout>
+                <lightning-layout-item  padding="around-small" >
+                    <lightning-button label="인증하기" onclick={handleVerification} variant="brand"></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+            <!-- 인증 결과 및 에러 메시지 표시 -->
+            <!-- <template if:true={verificationError}>
+                <p class="slds-text-color_error">{verificationError}</p>
+            </template> 
+            <p class="slds-text-color_success">{verificationResult}</p>            -->
+    </lightning-card>
+    
+    <template if:true={verificationResult}>
+        <!-- <template> -->
+        <lightning-card title="회사 내 영업 담당자 정보" icon-name="utility:form">
+            <div class="slds-p-around_medium">
+                <lightning-layout>
+                    <lightning-layout-item flexibility="auto" padding="around-small">
+                        <lightning-input 
+                            label="이름"
+                            maxlength="255"
+                            placeholder="이름 입력"
+                            value={lastName}
+                            onchange={handleChange}
+                            data-field="lastName"
+                            name="last_name"
+                            type="text"
+                            required>
+                        </lightning-input>
+                        <br>
+                        <!-- Phone Number -->
+                        <lightning-input 
+                        label="전화 번호"
+                        type="tel"
+                        placeholder="전화번호 입력"
+                        maxlength="40"
+                        value={phone}
+                        onchange={handleChange}
+                        name="phone"
+                        data-field="phone"
+                        required>
+                    </lightning-input>
+                    <p class="info-text">
+                        -없이 숫자만 입력하세요!
+                    </p>
+                    <br>
+                    <!-- E-Mail -->
+                    <lightning-input 
+                    label="이메일"
+                    type="email"
+                    maxlength="80"
+                    placeholder="이메일 입력"
+                    value={email}
+                    onchange={handleChange}
+                    data-field="email"
+                    name="email"
+                    required>
+                    </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </lightning-card>
+        <lightning-card title="회사 정보" icon-name="utility:form">
+            <div class="slds-p-around_medium">
+                <lightning-layout>
+                    <lightning-layout-item flexibility="auto" padding="around-small">
+                        <!-- Business License Number -->
+                        <lightning-input 
+                            label="사업자 등록번호"
+                            name="businessNumber"
+                            value={businessLicenseNumber}
+                            readonly>
+                        </lightning-input>
+                        <p class="info-text">
+                            앞서 조회한 사업자등록번호로만 가입이 가능합니다
+                        </p>
+                        <br>
+                        <!-- Company Information -->
+                        <lightning-input 
+                        label="회사 이름"
+
+                        placeholder="회사이름 입력"
+                        maxlength="255"
+                        type="text" 
+                        value={company}
+                        onchange={handleChange}
+                        data-field="company"
+                        name="company"
+                        required>
+                    </lightning-input>
+                    <p class="info-text">
+                        사업자등록증의 법인명 또는 상호명을 입력하세요
+                    </p>
+                    <br>
+                    <!-- Home Page -->
+                    <lightning-input 
+                    label="홈페이지"
+             
+                    maxlength="255"
+                    placeholder="https://"
+                    type="text" 
+                    value={website}
+                    onchange={handleChange}
+                    data-field="website"
+                    name="url"
+                    required>
+                </lightning-input>
+                <p class="info-text">
+                    홈페이지 또는 상품확인이 가능한 대표상품 URL을 넣어주세요!
+                </p>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </lightning-card>
+    
+
+        <lightning-card title="상품 정보" icon-name="standard:product">
+            <div class="slds-p-around_medium">
+                <!-- 취급 카테고리 -->
+                 <lightning-layout>
+                    
+                        <lightning-layout-item flexibility="auto" padding="around-small">
+                <!-- <lightning-input
+                    label="상품 및 서비스 종류"
+                    type="text"
+                    maxlength="80"
+                    value={industry}
+                    placeholder="상품 및 서비스 입력"
+                    onchange={handleChange}
+                    name="industry"
+                    >
+                </lightning-input> -->
+                        
+                <label for="industry">상품 및 서비스 종류</label>
+                <select class="slds-select" id="industry" name="industry"><option value="">--None--</option>
+                    <option value="Other">Other</option>
+                    <option value="Furniture &amp; Products">가구 및 제품</option>
+                    <option value="Moving &amp; Cleaning">이사 및 청소</option>
+                    <option value="Interior Design">인테리어</option>
+                    </select>
+                </lightning-layout-item>
+                <!-- 상품 소개 -->
+
+                   </lightning-layout>
+                   <lightning-layout>
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                <lightning-textarea data-field="productDescription" label="상품 및 서비스 설명" value={productDescription} onchange={handleChange} name="description"></lightning-textarea>
+                </lightning-layout-item>
+                <!-- <lightning-combobox options={sourceOptions} name="lead_source"></lightning-combobox> -->
+
+                <!-- <lightning-layout vertical-align="center">
+                    <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                        <lightning-combobox
+                            options={sourceOptions} 
+                            name="lead_source"
+                            label="내일의 집을 알게 된 곳"
+                            data-field="leadSource"
+                            value={leadSource}
+                            onchange={handleChange}>
+                        </lightning-combobox>
+                    </lightning-layout-item>
+                </lightning-layout> -->
+            </lightning-layout>
+            <lightning-layout>
+                <lightning-layout-item padding="around-small" size="6">
+                <label for="lead_source">내일의 집을 알게 된 곳</label>
+                <select id="lead_source" name="lead_source" onchange={handleChange} data-field="leadSource" class="slds-select">
+                    <option value="" disabled selected>--None--</option>
+                    <option value="Partner Referral">지인 추천</option>
+                    <option value="SNS">SNS</option>
+                    <option value="Other">기타</option>
+                </select>
+                <template if:true={showOtherSource}>
+                <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                    <lightning-input label="기타" type="text" maxlength="255" name="00NdL00000F0V3B" placeholder="기타 경위 입력" onchange={handleChange}></lightning-input>
+                </lightning-layout-item>
+                  
+                </template>
+                </lightning-layout-item></lightning-layout>
+                <!-- 버튼 -->
+                <div class="slds-m-top_large slds-align_absolute-center">
+                    <lightning-button variant="brand" label="입점 신청 완료" type="submit"></lightning-button>
+                </div>
+                
+            </div>
+       
+        </lightning-card>
+        </template>
+    </form>
+</template>

@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="주소 검색">
+        <div class="slds-p-around_medium slds-grid slds-wrap">
+            <div class="slds-col slds-size_12-of-12">
+                <lightning-input type="text" label="주소" value={address} onchange={handleAddressChange} class="address-input slds-m-bottom_x-small"></lightning-input>
+            </div>
+
+            <div class="slds-col slds-size_12-of-12">
+                <div class="address-result-container">
+                    <template for:each={addressList} for:item="item">
+                        <div key={item.roadAddr} onclick={handleAddressSelect} data-postalcode={item.zipNo} data-streetaddress={item.roadAddr} class="address-item">
+                            <span>{item.roadAddr}</span> <span class="postal-code">({item.zipNo})</span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_12-of-12 slds-align_absolute-center">
+                <lightning-button label="검색" onclick={handleAddressSearch} class="address-button"></lightning-button>
+            </div>
+
+            <template if:true={error}>
+                <div class="slds-text-color-error address-error">{error}</div>
+            </template>
+
+            <template if:true={postalCode}>
+                <lightning-input type="text" label="우편번호" value={postalCode} readonly class="address-input slds-m-bottom_x-small"></lightning-input>
+                <lightning-input type="text" label="도로명 주소" value={streetAddress} readonly class="address-input slds-m-bottom_x-small"></lightning-input>
+                <lightning-input type="text" label="시" value={city} readonly class="address-input slds-m-bottom_x-small"></lightning-input>
+                <lightning-input type="text" label="구" value={district} readonly class="address-input slds-m-bottom_x-small"></lightning-input>
+                <lightning-input type="text" label="상세 주소" value={detailAddress} onchange={handleDetailAddressChange} class="address-input"></lightning-input>
+            </template>
+        </div>
+    </lightning-card>
+</template>

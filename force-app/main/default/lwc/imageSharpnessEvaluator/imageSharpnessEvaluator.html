@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="📷 이미지 선명도 평가" icon-name="utility:image">
+        <div class="slds-m-around_medium">
+            <template if:true={isLoading}>
+                <p class="analysis-status analysis-loading">⏳ 분석 중입니다...</p>
+            </template>
+
+            <template if:true={error}>
+                <p class="slds-text-color_error">{error}</p>
+            </template>
+
+            <template if:true={imageUrl}>
+                <p><strong>업로드된 이미지:</strong></p>
+                <img src={imageUrl} alt="업로드된 이미지" class="uploaded-image" />
+
+                <template if:true={sharpnessResult}>
+                    <p class="analysis-status 
+                        {analysisClass}">
+                        {sharpnessResult}
+                    </p>
+                </template>
+
+                <button class="analysis-button" onclick={analyzeImageSharpness}>🔍 선명도 분석 실행</button>
+            </template>
+
+            <template if:false={imageUrl}>
+                <p>이미지가 등록되지 않았습니다.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

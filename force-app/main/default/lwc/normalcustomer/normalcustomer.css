@@ -1,0 +1,49 @@
+/* Style the select element */
+.slds-select {
+    appearance: none; /* Remove default browser styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 0.5rem 2.25rem 0.5rem 1rem; /* Padding for spacing */
+    width: 100%; /* Full width */
+    /* font-size: 1rem; Same font size as LWC combobox */
+    border: 1px solid #d8dde6; /* Light border */
+    border-radius: 0.25rem; /* Rounded corners */
+    background-color: #ffffff; /* White background */
+    color: #333; /* Text color */
+    box-sizing: border-box; /* Include padding and border in element's width */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* Custom styling for lightning combobox */
+.lightning-combobox select {
+    font-size: 0.8rem;  /* Smaller font size for the text */
+    padding: 0.5rem 1rem; /* Adjust padding to control height */
+}
+
+/* Add icon for dropdown */
+.slds-select::after {
+    content: '▼'; /* Dropdown arrow */
+    /* font-size: 0.75rem; */
+    color: #b3b3b3;
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+}
+
+/* Hover effect */
+.slds-select:hover {
+    border-color: #0068c9; /* Blue border on hover */
+    box-shadow: 0 0 0 2px rgba(0, 103, 201, 0.3); /* Light blue shadow */
+}
+
+/* Focus effect */
+.slds-select:focus {
+    border-color: #0068c9; /* Focus blue border */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 2px rgba(0, 103, 201, 0.3); /* Focus shadow */
+}
+
+/* Placeholder text color */
+.slds-select option:disabled {
+    color: #a0aec0; /* Disabled option text color */
+}

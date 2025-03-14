@@ -1,0 +1,10 @@
+.header-container {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 15px;
+    color: #222; /* 조금 더 진한 색 */
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}

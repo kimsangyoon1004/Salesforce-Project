@@ -1,0 +1,296 @@
+<template>
+  <lightning-card title="견적 상담 요청하기" icon-name="utility:form">
+    <div class="slds-p-around_small">
+      <p class="info-text">
+        ※정보를 입력하고 찾기를 눌러주세요. 마음에 드는 곳이 없다면 요청을
+        공개하세요. 더 많은 업체에게 상담을 받을 수 있습니다.
+      </p>
+    </div>
+
+    <lightning-layout multiple-rows>
+      <!-- First Name (이름) -->
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-input
+          label="이름"
+          name="lastName"
+          value={lastName}
+          onchange={handleInputChange}
+          required
+        >
+        </lightning-input>
+      </lightning-layout-item>
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-combobox
+          label="시/도"
+          name="city"
+          value={city}
+          placeholder="해당 지역 선택"
+          options={cityOptions}
+          onchange={handleInputChange}
+          required
+        >
+        </lightning-combobox>
+      </lightning-layout-item>
+
+      <!-- Email -->
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-input
+          type="email"
+          label="이메일"
+          name="email"
+          value={email}
+          onchange={handleInputChange}
+          required
+        >
+        </lightning-input>
+      </lightning-layout-item>
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-combobox
+          label="구"
+          name="district"
+          value={district}
+          placeholder="해당 구역 선택"
+          options={districtOptions}
+          onchange={handleInputChange}
+          required
+        >
+        </lightning-combobox>
+      </lightning-layout-item>
+      <!-- Phone -->
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-input
+          type="tel"
+          label="전화번호"
+          name="phone"
+          value={phone}
+          onchange={handleInputChange}
+        >
+        </lightning-input>
+      </lightning-layout-item>
+      <lightning-layout-item
+        padding="around-small"
+        size="6"
+      ></lightning-layout-item>
+
+      <!-- 시공공간 선택 -->
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-combobox
+          label="원하시는 시공을 선택해 주세요."
+          placeholder="시공 선택"
+          name="constructionType"
+          options={constructionOptions}
+          value={constructionType}
+          onchange={handleInputChange}
+        >
+        </lightning-combobox>
+      </lightning-layout-item>
+
+      <!-- 시공 시작일 -->
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-combobox
+          label="언제 시공이 시작되길 원하시나요?"
+          placeholder="시기 선택"
+          name="constructionStart"
+          options={startDateOptions}
+          value={constructionStart}
+          onchange={handleInputChange}
+        >
+        </lightning-combobox>
+      </lightning-layout-item>
+
+      <!-- 시공할 공간 종류 -->
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-combobox
+          label="시공할 공간의 종류를 선택해 주세요."
+          placeholder="공간 선택"
+          name="spaceType"
+          options={spaceTypeOptions}
+          value={spaceType}
+          onchange={handleInputChange}
+        >
+        </lightning-combobox>
+      </lightning-layout-item>
+
+      <!-- 공간 상황 -->
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-combobox
+          label="공간의 상황을 선택해 주세요."
+          placeholder="현황 선택"
+          name="spaceCondition"
+          options={spaceConditionOptions}
+          value={spaceCondition}
+          onchange={handleInputChange}
+        >
+        </lightning-combobox>
+      </lightning-layout-item>
+
+      <!-- 시공공간 크기 -->
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-combobox
+          label="시공공간은 몇 평이세요?"
+          placeholder="면적 선택"
+          name="spaceSize"
+          options={spaceSizeOptions}
+          value={spaceSize}
+          onchange={handleInputChange}
+        >
+        </lightning-combobox>
+      </lightning-layout-item>
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-combobox
+          label="내일의 집을 알게 된 곳"
+          placeholder="경위 선택"
+          name="leadSource"
+          options={leadSourceOptions}
+          value={leadSource}
+          onchange={handleInputChange}
+        >
+        </lightning-combobox>
+      </lightning-layout-item>
+      <!-- 전화 가능 날짜/시간 -->
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-input
+          type="datetime"
+          name="dateTime"
+          value={dateTime}
+          onchange={handleInputChange}
+          label="통화 가능 날짜/시간"
+        ></lightning-input>
+      </lightning-layout-item>
+
+      <!-- Lead Source -->
+
+      <template if:true={showOtherSource}>
+        <lightning-layout-item padding="around-small" size="6">
+          <lightning-input
+            label="기타"
+            type="text"
+            maxlength="255"
+            name="otherSource"
+            placeholder="기타 경위 입력"
+            onchange={handleInputChange}
+            value={otherSource}
+          ></lightning-input>
+        </lightning-layout-item>
+      </template>
+      <lightning-layout-item padding="around-small" size="6">
+        <lightning-checkbox-group
+          name="style"
+          label="원하시는 스타일을 선택하세요"
+          options={styleOptions}
+          value={style}
+          message-when-value-missing="하나 이상 선택하세요."
+          onchange={handleInputChange}
+          variant="standard"
+          required="true"
+          class="form-control"
+          data-id="style"
+        ></lightning-checkbox-group>
+      </lightning-layout-item>
+    </lightning-layout>
+
+    <!-- 검색 버튼 -->
+    <lightning-layout
+      horizontal-align="center"
+      pull-to-boundary="small"
+      vertical-align="start"
+    >
+      <lightning-layout-item padding="around-small">
+        <lightning-button
+          label="찾기"
+          onclick={handleSearch}
+          variant="brand"
+        ></lightning-button>
+      </lightning-layout-item>
+    </lightning-layout>
+  </lightning-card>
+  <template if:true={showSearch}>
+    <lightning-card icon-name="utility:search" variant="brand">
+      <div slot="title">업체 리스트</div>
+
+      <template if:true={portfolios}>
+        <div class="slds-row slds-wrap slds-p-around_medium">
+          <template for:each={portfolios} for:item="portfolio">
+            <div key={portfolio.Id} class="slds-p-around_small">
+              <article class="slds-card slds-card_boundary">
+                <lightning-card
+                  title={portfolio.Title__c}
+                  icon-name="standard:account"
+                  data-id={portfolio.Id}
+                  onclick={handleSelect}
+                >
+                  <lightning-layout multiple-rows>
+                    <lightning-layout-item padding="around-small" size="6">
+                      <template if:true={portfolio.Link__c}>
+                        <div
+                          if:true={portfolio.Body__c}
+                          class="rich-text-content"
+                          lwc:dom="manual"
+                        ></div>
+
+                        <img
+                          src={portfolio.Link__c}
+                          alt=""
+                          width="100%"
+                          height="100%"
+                        />
+                      </template>
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="around-small" size="6">
+                      <div class="slds-m-around_medium">
+                        <p>
+                          <strong>시공사:</strong> {portfolio.Account__r.Name}
+                        </p>
+                        <!-- <p>
+                        <strong>Image:</strong>
+                        {portfolio.Body__c}
+                      </p> -->
+                        <p>
+                          <strong>유형:</strong>
+                          {portfolio.SpaceType__c}
+                        </p>
+
+                        <p>
+                          <strong>평수:</strong>
+                          {portfolio.SpaceSize__c}
+                        </p>
+                        <p>
+                          <strong>위치:</strong> {portfolio.City__c},
+                          {portfolio.District__c}
+                        </p>
+                        <template
+                          for:each={portfolio.stylingArray}
+                          for:item="style"
+                        >
+                          <lightning-badge
+                            key={style}
+                            label={style}
+                          ></lightning-badge>
+                        </template>
+                        <!-- <p><strong>Styling:</strong> {portfolio.Styling__c}</p> -->
+                      </div>
+                    </lightning-layout-item>
+                  </lightning-layout>
+                  <div slot="footer" onclick={handleSelect}>
+                    <button
+                      class="slds-button slds-button_neutral"
+                      onclick={handleSubmit}
+                    >
+                      견적 상담 요청하기
+                    </button>
+                  </div>
+                </lightning-card>
+              </article>
+            </div>
+          </template>
+        </div>
+      </template>
+      <div slot="footer">
+        더 많은 업체들의 견적 상담을 받을 수 있습니다. &nbsp;
+        <button class="slds-button slds-button_neutral" onclick={handlePost}>
+          견적 요청 공개하기
+        </button>
+      </div>
+    </lightning-card>
+  </template>
+</template>

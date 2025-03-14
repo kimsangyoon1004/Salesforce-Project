@@ -1,0 +1,24 @@
+<template>
+    <div class="ocr-container">
+        <h2 class="ocr-title">📄 OCR 분석 결과</h2>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="분석 중..." variant="brand"></lightning-spinner>
+        </template>
+
+        <button class="ocr-button" onclick={extractTextFromImage}>🔍 OCR 실행</button>
+
+        <template if:true={businessInfo.등록번호}>
+            <div class="ocr-info">
+                <p><span>📌 등록번호:</span> {businessInfo.등록번호}</p>
+                <p><span>🏢 법인명:</span> {businessInfo.법인명}</p>
+                <p><span>👤 대표자:</span> {businessInfo.대표자}</p>
+                <p><span>📅 개업연월일:</span> {businessInfo.개업연월일}</p>
+            </div>
+        </template>
+
+        <template if:true={error}>
+            <div class="ocr-error">{error}</div>
+        </template>
+    </div>
+</template>

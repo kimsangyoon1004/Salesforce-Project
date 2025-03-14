@@ -1,0 +1,15 @@
+<template>
+    <div class="container">
+        <c-imagereuploadheader title="📌 사업자등록증 재업로드"></c-imagereuploadheader>
+        
+        <template if:true={leadId}>
+            <c-lead-image-upload record-id={leadId}></c-lead-image-upload>
+        </template>
+
+        <template if:false={leadId}>
+            <p class="slds-text-color_error slds-text-align_center error-message">
+                ❌ 유효한 Lead ID가 없습니다. 올바른 경로로 접근하세요.
+            </p>
+        </template>
+    </div>
+</template>

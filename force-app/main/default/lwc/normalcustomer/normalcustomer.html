@@ -1,0 +1,222 @@
+<template>
+    
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdL00000KZLm1" method="POST">
+        <!-- <input type="hidden" name="recordType" value="012dL0000050av5">  -->
+        <input type=hidden name="oid" value="00DdL00000KZLm1">
+         <input type="hidden" name="debug" value=1>                             
+         <input type="hidden" name="debugEmail" value="jkjongwon@gmail.com"> 
+    <input type="hidden" name="first_name" value=""/>
+    <input type="hidden" name="recordType" value="012dL0000051Fq9">
+    <lightning-card title="업체찾기 요청하기" icon-name="utility:form">
+        <div class="slds-p-around_small">
+            <p class="info-text">
+                ※ 리드 정보를 입력하고 제출해주세요.
+            </p>
+        </div>
+        
+        <lightning-layout multiple-rows>
+
+            <!-- First Name (이름) -->
+            <lightning-layout-item padding="around-small" size="6">
+                <lightning-input 
+                    label="이름"
+                    name="last_name"
+                    value={firstName}
+                    onchange={handleInputChange}
+                    required>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <!-- Email -->
+            <lightning-layout-item padding="around-small" size="6">
+                <lightning-input 
+                    type="email"
+                    label="이메일"
+                    name="email"
+                    value={email}
+                    onchange={handleInputChange}
+                    required>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <!-- Phone -->
+            <lightning-layout-item padding="around-small" size="6">
+                <lightning-input 
+                    type="tel"
+                    label="전화번호"
+                    name="phone"
+                    value={phone}
+                    onchange={handleInputChange}>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <!-- Lead Status -->
+            <!-- <lightning-layout-item padding="around-small" size="6">
+                <lightning-combobox
+                    label="리드 상태"
+                    name="leadStatus"
+                    options={leadStatusOptions}
+                    value={leadStatus}
+                    onchange={handleInputChange}
+                    required>
+                </lightning-combobox>
+            </lightning-layout-item> -->
+
+            <!-- Lead Source -->
+            <!-- <lightning-layout-item padding="around-small" size="6">
+                <lightning-combobox
+                    label="리드 출처"
+                    name="lead_source"
+                    options={leadSourceOptions}
+                    value={leadSource}
+                    onchange={handleInputChange}>
+                </lightning-combobox>
+                
+            </lightning-layout-item> -->
+            <lightning-layout-item padding="around-small" size="6">
+            <label for="lead_source">내일의 집을 알게 된 곳</label>
+                <select id="lead_source" name="lead_source" onchange={handleInputChange} data-field="leadSource" class="slds-select">
+                    <option value="" disabled selected>--None--</option>
+                    <option value="Partner Referral">지인 추천</option>
+                    <option value="SNS">SNS</option>
+                    <option value="Other">기타</option>
+                </select>
+                <!-- <template if:true={showOtherSource}>
+                <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                    <lightning-input label="기타" type="text" maxlength="255" name="00NdL00000F0V3B" placeholder="기타 경위 입력" onchange={handleInputChange}></lightning-input>
+                </lightning-layout-item>
+                </template> -->
+            </lightning-layout-item>
+
+            <!-- Other Source -->
+            <lightning-layout-item padding="around-small" size="6">
+                <lightning-input 
+                    label="기타 출처"
+                    name="00NdL00000F0V3B" 
+                    value={otherSource}
+                    onchange={handleInputChange}>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <!-- 시공공간 선택 -->
+            <lightning-layout-item padding="around-small" size="6">
+                <!-- <lightning-combobox
+                    label="원하시는 시공을 선택해 주세요."
+                    name="00NdL00000F0qdt"
+                    options={constructionOptions}
+                    value={constructionType}
+                    onchange={handleInputChange}>
+                </lightning-combobox> -->
+                <label for="00NdL00000F0qdt">원하시는 시공을 선택해 주세요.</label>
+                <select class="slds-select" id="00NdL00000F0qdt" name="00NdL00000F0qdt" title="원하시는 시공을 선택해 주세요.">
+                    <option value="">--None--</option>
+                    <option value="집 전체 시공">집 전체 시공</option>
+                    <option value="부분 시공">부분 시공</option>
+                    </select>
+            </lightning-layout-item>
+
+            <!-- 시공 시작일 -->
+            <lightning-layout-item padding="around-small" size="6">
+                <!-- <lightning-combobox
+                    label="언제 시공이 시작되길 원하시나요?"
+                    name="00NdL00000F0qlx" 
+                    options={startDateOptions}
+                    value={constructionStart}
+                    onchange={handleInputChange}>
+                </lightning-combobox> -->
+                <label for="00NdL00000F0qlx">언제 시공이 시작되길 원하시나요?</label>
+                <select class="slds-select" id="00NdL00000F0qlx" name="00NdL00000F0qlx" title="언제 시공이 시작되길 원하시나요?"><option value="">--None--</option><option value="2주-1달 이내">2주-1달 이내</option>
+                    <option value="1달-2달 이내">1달-2달 이내</option>
+                    <option value="2달-3달 이내">2달-3달 이내</option>
+                    <option value="3달-4달 이내">3달-4달 이내</option>
+                    </select>
+            </lightning-layout-item>
+
+            <!-- 시공할 공간 종류 -->
+            <lightning-layout-item padding="around-small" size="6">
+                <!-- <lightning-combobox
+                    label="시공할 공간의 종류를 선택해 주세요."
+                    name="00NdL00000F0h9C" 
+                    options={spaceTypeOptions}
+                    value={spaceType}
+                    onchange={handleInputChange}>
+                </lightning-combobox> -->
+                <label for="00NdL00000F0h9C">시공할 공간의 종류를 선택해 주세요.</label>
+                <select class="slds-select" id="00NdL00000F0h9C" name="00NdL00000F0h9C" title="시공할 공간의 종류를 선택해 주세요."><option value="">--None--</option><option value="아파트">아파트</option>
+                    <option value="오피스텔">오피스텔</option>
+                    <option value="빌라">빌라</option>
+                    <option value="단독주택">단독주택</option>
+                    </select>
+            </lightning-layout-item>
+
+            <!-- 공간 상황 -->
+            <lightning-layout-item padding="around-small" size="6">
+                <!-- <lightning-combobox
+                    label="공간의 상황을 선택해 주세요."
+                   name="00NdL00000F0PYt"
+                    options={spaceConditionOptions}
+                    value={spaceCondition}
+                    onchange={handleInputChange}>
+                </lightning-combobox> -->
+                <label for="00NdL00000F0PYt">공간의 상황을 선택해 주세요.</label>
+                <select class="slds-select" id="00NdL00000F0PYt" name="00NdL00000F0PYt" title="공간의 상황을 선택해 주세요."><option value="">--None--</option><option value="현재 공실">현재 공실</option>
+                    <option value="시공 시 공실 예정">시공 시 공실 예정</option>
+                    <option value="사용/거주중(보관이사 예정)">사용/거주중(보관이사 예정)</option>
+                    </select>
+            </lightning-layout-item>
+
+            <!-- 시공공간 크기 -->
+            <lightning-layout-item padding="around-small" size="6">
+                <!-- <lightning-combobox
+                    label="시공공간은 몇 평이세요?"
+                    name="00NdL00000F0fKI" 
+                    options={spaceSizeOptions}
+                    value={spaceSize}
+                    onchange={handleInputChange}>
+                </lightning-combobox> -->
+                <label for="00NdL00000F0fKI">시공공간은 몇 평이세요?</label>
+                <select class="slds-select" id="00NdL00000F0fKI" name="00NdL00000F0fKI" title="시공공간은 몇 평이세요?"><option value="">--None--</option><option value="10평 이하 (~33㎡)">10평 이하 (~33㎡)</option>
+                    <option value="1115평 (3449㎡)">1115평 (3449㎡)</option>
+                    <option value="1620평 (5066㎡)">1620평 (5066㎡)</option>
+                    <option value="2125평 (6782㎡)">2125평 (6782㎡)</option>
+                    <option value="2630평 (8399㎡)">2630평 (8399㎡)</option>
+                    <option value="3135평 (100115㎡)">3135평 (100115㎡)</option>
+                    <option value="3640평 (116132㎡)">3640평 (116132㎡)</option>
+                    <option value="4145평 (133148㎡)">4145평 (133148㎡)</option>
+                    <option value="4650평 (149165㎡)">4650평 (149165㎡)</option>
+                    <option value="51평 이상 (166㎡~)">51평 이상 (166㎡~)</option>
+                    </select>
+            </lightning-layout-item>
+
+            <!-- <input type="datetime-local" name="00NdL00000F0jRA" class="slds-datetime-picker slds-input"> -->
+
+            <!-- 전화 가능 날짜/시간 -->
+            <!-- <lightning-layout-item padding="around-small" size="6">
+                <lightning-input 
+                    type="date"
+                    label="통화 가능 날짜"
+                    name="callDate"
+                    value={callDate}
+                    onchange={handleInputChange}>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item padding="around-small" size="6">
+                <lightning-input 
+                    type="time"
+                    label="통화 가능 시간"
+                    name="callTime"
+                    value={callTime}
+                    onchange={handleInputChange}>
+                </lightning-input>
+            </lightning-layout-item> -->
+        </lightning-layout>
+
+        <!-- 제출 버튼 -->
+        <lightning-layout>
+            <lightning-layout-item padding="around-small">
+                <lightning-button label="제출" type="submit" onclick={handleSubmit} variant="brand"></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card></form>
+</template>

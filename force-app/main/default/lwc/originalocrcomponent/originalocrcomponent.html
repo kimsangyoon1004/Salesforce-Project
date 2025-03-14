@@ -1,0 +1,23 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." variant="brand"></lightning-spinner>
+    </template>
+
+    <lightning-input type="file" accept=".png, .jpg, .jpeg" onchange={handleImageUpload}></lightning-input>
+
+    <template if:true={businessInfo}>
+        <div class="extracted-info">
+            <h2>추출된 정보</h2>
+            <p>등록번호: {businessInfo.등록번호}</p>
+            <p>법인명: {businessInfo.법인명}</p>
+            <p>대표자: {businessInfo.대표자}</p>
+            <p>개업연월일: {businessInfo.개업연월일}</p>
+        </div>
+    </template>
+
+    <template if:true={error}>
+        <div class="error-message">
+            <p>{error.body.message}</p>
+        </div>
+    </template>
+</template>

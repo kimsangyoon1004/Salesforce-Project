@@ -1,0 +1,86 @@
+<template>
+  <lightning-card title="Portfolio Search" icon-name="utility:search">
+    <div class="slds-p-around_small">
+      <lightning-input
+        type="text"
+        name="city"
+        label="City"
+        value={city}
+        onchange={handleFilterChange}
+      ></lightning-input>
+      <lightning-input
+        type="text"
+        name="district"
+        label="District"
+        value={district}
+        onchange={handleFilterChange}
+      ></lightning-input>
+      <lightning-input
+        type="text"
+        name="styling"
+        label="Styling (comma-separated)"
+        value="내추럴"
+        onchange={handleFilterChange}
+      ></lightning-input>
+      <lightning-button
+        label="Search"
+        onclick={handleSearch}
+        variant="brand"
+      ></lightning-button>
+    </div>
+    <template if:true={portfolios}>
+      <div class="slds-row slds-wrap slds-p-around_medium">
+        <template for:each={portfolios} for:item="portfolio">
+          <div key={portfolio.Id} class="slds-p-around_small">
+            <article class="slds-card slds-card_boundary">
+              <lightning-card
+                title={portfolio.Name}
+                icon-name="standard:account"
+                onclick={handleSelect}
+                data-id={portfolio.Id}
+              >
+                <div class="slds-m-around_medium">
+                  <template if:true={portfolio.Body__c}>
+                    <div
+                      if:true={portfolio.Body__c}
+                      class="rich-text-content"
+                      lwc:dom="manual"
+                    ></div>
+                  </template>
+                  <p><strong>Account:</strong> {portfolio.Account__r.Name}</p>
+
+                  <p>
+                    <strong>Space Type:</strong>
+                    {portfolio.SpaceType__c}
+                  </p>
+
+                  <p>
+                    <strong>Space Size:</strong>
+                    {portfolio.SpaceSize__c}
+                  </p>
+                  <p>
+                    <strong>Location:</strong> {portfolio.City__c},
+                    {portfolio.District__c}
+                  </p>
+                  <template for:each={portfolio.stylingArray} for:item="style">
+                    <lightning-badge
+                      key={style}
+                      label={style}
+                    ></lightning-badge>
+                  </template>
+                  <!-- <p><strong>Styling:</strong> {portfolio.Styling__c}</p> -->
+                </div>
+
+                <div slot="footer">
+                  <button class="slds-button slds-button_neutral">
+                    견적 상담 요청하기
+                  </button>
+                </div>
+              </lightning-card>
+            </article>
+          </div>
+        </template>
+      </div>
+    </template>
+  </lightning-card>
+</template>

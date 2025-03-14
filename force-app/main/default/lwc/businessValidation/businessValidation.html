@@ -1,0 +1,15 @@
+<template>
+    <div class="verification-container">
+        <h2 class="verification-title">📜 사업자 등록증 인증</h2>
+
+        <button class="verification-button" onclick={handleValidate}>
+            ✅ 사업자 인증
+        </button>
+
+        <template if:true={verificationStatus}>
+            <p class="verification-result {verificationClass}">
+                {verificationStatus}
+            </p>
+        </template>
+    </div>
+</template>

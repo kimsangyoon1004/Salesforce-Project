@@ -1,0 +1,77 @@
+.ocr-container {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ocr-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #0070d2;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.ocr-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #5bc0de, #48b0d6);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ocr-button:hover {
+    background: linear-gradient(135deg, #48b0d6, #3aa0c8);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.ocr-button:active {
+    transform: scale(0.98);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.ocr-button:focus {
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(91, 192, 222, 0.5);
+}
+
+
+
+.ocr-info {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+.ocr-info p {
+    margin: 4px 0;
+    padding: 6px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.ocr-info span {
+    font-weight: bold;
+    color: #333;
+}
+
+.ocr-error {
+    background: #ffebee;
+    color: #d32f2f;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}

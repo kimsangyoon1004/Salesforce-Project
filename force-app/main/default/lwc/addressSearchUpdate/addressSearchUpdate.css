@@ -1,0 +1,43 @@
+.address-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.address-item:hover {
+  background-color: #f0f0f0;
+}
+
+.address-item span {
+  font-weight: bold;
+}
+
+.address-item .postal-code {
+  color: #888;
+  margin-left: 10px;
+}
+
+/* input 스타일 */
+.address-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* error message 스타일 */
+.address-error {
+  color: red;
+  margin-top: 10px;
+}
+
+/* result container 스타일 */
+.address-result-container {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}

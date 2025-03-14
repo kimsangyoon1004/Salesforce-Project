@@ -1,0 +1,62 @@
+<template>
+    <lightning-card title="📌 계약서 제출" icon-name="utility:upload">
+        <div class="upload-container">
+            <!-- 왼쪽: 파일 업로드 -->
+            <div class="upload-section">
+                <lightning-input type="file" 
+                                 label="📂 계약서 파일 선택 (PDF / 이미지)" 
+                                 onchange={handleFileChange} 
+                                 accept=".pdf,.jpg,.jpeg,.png"
+                                 class="custom-file-input"></lightning-input>
+                
+                <template if:true={fileData}>
+                    <div class="file-info">
+                        <p>📄 {fileData.fileName} ({fileSize})</p>
+                        <lightning-icon icon-name="utility:success" alternative-text="File Selected" size="x-small" class="file-success"></lightning-icon>
+                    </div>
+                </template>
+
+                <lightning-input type="checkbox" 
+                                 label="✅ 계약 내용을 확인하고 제출합니다." 
+                                 onchange={handleCheckboxChange}
+                                 class="slds-m-top_small"></lightning-input>
+            </div>
+
+            <!-- 오른쪽: 이미지 미리보기 -->
+            <div class="preview-section">
+                <template if:true={imageUrl}>
+                    <p class="preview-label">📌 업로드된 계약서</p>
+                    <template if:false={isPdf}>
+                        <img src={imageUrl} class="preview-image" alt="계약서 미리보기">
+                    </template>
+                    <template if:true={isPdf}>
+                        <p>📄 PDF 파일은 미리보기가 지원되지 않습니다.</p>
+                    </template>
+                </template>
+            </div>
+        </div>
+
+        <div class="slds-m-top_medium slds-text-align_center">
+            <lightning-button variant="brand" 
+                              label="📤 계약서 제출" 
+                              onclick={handleSubmit} 
+                              class="custom-submit-btn" 
+                              disabled={isSubmitDisabled}>
+            </lightning-button>
+        </div>
+
+        <template if:true={isLoading}>
+            <div class="loading-spinner">
+                <lightning-spinner alternative-text="Uploading..." size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:true={uploadSuccess}>
+            <p class="slds-text-color_success slds-text-align_center">✅ 계약서가 성공적으로 제출되었습니다!</p>
+        </template>
+
+        <template if:true={uploadError}>
+            <p class="slds-text-color_error slds-text-align_center">{uploadError}</p>
+        </template>
+    </lightning-card>
+</template>

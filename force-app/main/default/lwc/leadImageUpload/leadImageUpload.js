@@ -119,6 +119,7 @@ export default class LeadImageUpload extends LightningElement {
             console.log("✅ [리드 업데이트 완료]");
             this.uploadSuccess = true;
             this.uploadError = "";
+            window.location.href = "https://crm101-a5-dev-ed.develop.my.site.com/s/thankyou";
         } catch (error) {
             console.error("❌ [리드 업데이트 실패]:", error);
             this.uploadError = `❌ 리드 업데이트 실패: ${error.body ? error.body.message : error.message}`;

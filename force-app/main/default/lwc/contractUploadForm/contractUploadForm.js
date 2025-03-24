@@ -1,6 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 import getSignedUrl from '@salesforce/apex/GCSUploadService.getSignedUrl';
-import updateLeadWithContractImage from '@salesforce/apex/ContractUploadController.updateLeadWithContractImage'; // ✅ 변경된 Apex 호출
+import updateLeadWithContractImage from '@salesforce/apex/ContractUploadController.updateLeadWithContractImage';
 
 export default class ContractUploadForm extends LightningElement {
     @api recordId;
@@ -12,10 +12,12 @@ export default class ContractUploadForm extends LightningElement {
     @track contractAccepted = false;
     @track isPdf = false;
 
+    // 🔹 recordId가 없는 경우 URL에서 leadId 가져오기
     connectedCallback() {
         if (!this.recordId) {
             const params = new URLSearchParams(window.location.search);
             this.recordId = params.get("leadId");
+
             console.log("📌 [디버깅] URL에서 가져온 리드 ID:", this.recordId);
         }
     }

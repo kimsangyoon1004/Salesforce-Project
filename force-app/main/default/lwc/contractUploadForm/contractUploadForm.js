@@ -34,7 +34,7 @@ export default class ContractUploadForm extends LightningElement {
         const file = event.target.files[0];
         if (file) {
             if (file.size > 5 * 1024 * 1024) {
-                this.uploadError = "❌ 파일 크기가 너무 큽니다. 5MB 이하의 파일을 선택하세요.";
+                this.uploadError = " 파일 크기가 너무 큽니다. 5MB 이하의 파일을 선택하세요.";
                 return;
             }
 

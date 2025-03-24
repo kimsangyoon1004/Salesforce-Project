@@ -44,3 +44,4 @@ $RECYCLE.BIN/
 **/.venv/
 **/venv/
 force-app/main/default/app/service-account-key.json
+force-app/main/default/app/service-account-key.json

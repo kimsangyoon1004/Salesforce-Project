@@ -9,19 +9,19 @@ import torchvision.transforms as transforms
 
 app = Flask(__name__)
 
-# 📌 GCS 버킷 및 모델 경로 설정
+#  GCS 버킷 및 모델 경로 설정
 BUCKET_NAME = "leadimageupload"
 MODEL_PATH = "/app/blurrcleardistinguishmodelreal.pth"  # Docker 컨테이너 내 모델 경로
 
-# 🚀 PyTorch 2.6 이상에서 모델 로딩 허용
+# PyTorch 2.6 이상에서 모델 로딩 허용
 torch.serialization.add_safe_globals([ViTForImageClassification])
 
-# 📌 모델 로드 (weights_only=False 설정)
+#  모델 로드 (weights_only=False 설정)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = torch.load(MODEL_PATH, map_location=device, weights_only=False)
 model.eval()  # 모델을 평가 모드로 전환
 
-# 📌 이미지 변환 설정
+#  이미지 변환 설정
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),

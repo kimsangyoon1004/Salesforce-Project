@@ -1,7 +1,0 @@
-flask
-google-cloud-storage
-Pillow
-torch
-torchvision
-gunicorn  # Cloud Run에서 Flask 실행을 위해 추가
-transformers

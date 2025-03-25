@@ -6,8 +6,8 @@
 내일의 집 플랫폼 운영 효율성을 향상하고, **파트너 및 고객 만족도를 증대**하기 위한 **Salesforce 기반 시스템 구축**  
 
 ## **⚙️ 기술 스택**  
-- **Backend:** APEX, JavaScript  
-- **Frontend:** Lightning Web Component (LWC)  
+- **Backend:** Apex (Salesforce 서버 로직, API, 데이터 처리)  
+- **Frontend:** Lightning Web Component(HTML, Javascript, CSS)
 - **Cloud Services:** Sales Cloud, Service Cloud, Experience Cloud, Tableau  
 
 ## **🚀 주요 기능 구현**  

@@ -18,7 +18,7 @@ export default class ImageSharpnessEvaluator extends LightningElement {
     
     wiredLeadData;
 
-    // 📌 리드의 이미지 URL 및 선명도 결과 가져오기
+    //  리드의 이미지 URL 및 선명도 결과 가져오기
     @wire(getRecord, { recordId: "$recordId", fields: FIELDS })
     wiredLead(result) {
         this.wiredLeadData = result;
@@ -36,7 +36,7 @@ export default class ImageSharpnessEvaluator extends LightningElement {
         }
     }
 
-    // 📌 Cloud Run API 호출하여 이미지 선명도 분석
+    //  Cloud Run API 호출하여 이미지 선명도 분석
     analyzeImageSharpness() {
         if (!this.imageUrl) {
             this.error = "이미지 URL이 없습니다.";
@@ -55,14 +55,14 @@ export default class ImageSharpnessEvaluator extends LightningElement {
             })
             .catch(error => {
                 this.error = "이미지 분석 중 오류 발생";
-                this.sharpnessResult = "❌ 분석 실패";
+                this.sharpnessResult = " 분석 실패";
             })
             .finally(() => {
                 this.isLoading = false;
             });
     }
 
-    // 📌 Salesforce Lead에 짧은 버전의 선명도 결과 저장
+    //  Salesforce Lead에 짧은 버전의 선명도 결과 저장
     updateLeadRecord(leadValue) {
         if (!this.recordId) return;
 

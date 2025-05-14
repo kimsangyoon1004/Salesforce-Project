@@ -11,15 +11,15 @@ public with sharing class OCRProcessor {
                 lead.Extracted_Text__c = ocrResult;
                 leadsToUpdate.add(lead);
 
-                System.debug('✅ OCR 실행 완료 - 리드 ID: ' + lead.Id + ', 결과: ' + ocrResult);
+                System.debug(' OCR 실행 완료 - 리드 ID: ' + lead.Id + ', 결과: ' + ocrResult);
             } else {
-                System.debug('⚠️ OCR 실행 불가 - 이미지 URL 없음 (리드 ID: ' + lead.Id + ')');
+                System.debug(' OCR 실행 불가 - 이미지 URL 없음 (리드 ID: ' + lead.Id + ')');
             }
         }
 
         if (!leadsToUpdate.isEmpty()) {
             update leadsToUpdate;
-            System.debug('✅ OCR 결과가 리드에 저장됨');
+            System.debug(' OCR 결과가 리드에 저장됨');
         }
     }
 }

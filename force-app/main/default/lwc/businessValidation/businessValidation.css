@@ -1,4 +1,4 @@
-/* 🔹 전체 컨테이너 스타일 */
+/*  전체 컨테이너 스타일 */
 .verification-container {
     background: #f9f9f9;
     border-radius: 12px;
@@ -11,7 +11,7 @@
     border: 1px solid #e0e0e0;
 }
 
-/* 📜 제목 스타일 */
+/*  제목 스타일 */
 .verification-title {
     font-size: 20px;
     font-weight: bold;
@@ -23,7 +23,7 @@
     gap: 8px;
 }
 
-/* ✅ 버튼 스타일 */
+/*  버튼 스타일 */
 .verification-button {
     display: flex;
     align-items: center;
@@ -54,7 +54,7 @@
     transform: scale(0.98);
 }
 
-/* 🔍 결과 메시지 스타일 */
+/*  결과 메시지 스타일 */
 .verification-result {
     font-size: 16px;
     font-weight: bold;
@@ -70,14 +70,14 @@
     text-align: center;
 }
 
-/* ✅ 성공 스타일 */
+/*  성공 스타일 */
 .verification-success {
     background: #e8f5e9;
     color: #2e7d32;
     border: 1px solid #2e7d32;
 }
 
-/* ❌ 실패 스타일 */
+/*  실패 스타일 */
 .verification-fail {
     background: #ffebee;
     color: #d32f2f;

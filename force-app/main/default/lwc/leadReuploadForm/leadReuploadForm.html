@@ -1,5 +1,5 @@
 <template>
-    <lightning-card title="📤 사업자등록증 업로드" icon-name="utility:upload">
+    <lightning-card title="사업자등록증 업로드" icon-name="utility:upload">
         <div class="slds-m-around_medium">
             <template if:true={isLoading}>
                 <lightning-spinner alternative-text="업로드 중..." size="medium"></lightning-spinner>
@@ -12,7 +12,7 @@
             <lightning-input type="file" label="파일 선택" accept=".png, .jpg, .jpeg, .pdf"
                 onchange={handleFileChange}></lightning-input>
 
-            <lightning-button variant="brand" label="📤 업로드" onclick={uploadFileToGCS} class="slds-m-top_medium"
+            <lightning-button variant="brand" label=" 업로드" onclick={uploadFileToGCS} class="slds-m-top_medium"
                 disabled={isUploading}></lightning-button>
         </div>
     </lightning-card>

@@ -14,11 +14,11 @@ public with sharing class OCRFlowHandler2 {
             if (lead.Business_Certification_Image__c != null) {
                 String extractedText = GoogleCloudVision.extractFilteredText(lead.Business_Certification_Image__c);
 
-                // ✅ OCR 결과를 리드에 저장
+                //  OCR 결과를 리드에 저장
                 lead.Extracted_Text__c = extractedText;
                 update lead;
 
-                // ✅ OCR 결과를 Flow에 반환할 수 있도록 설정
+                //  OCR 결과를 Flow에 반환할 수 있도록 설정
                 OCRResult result = new OCRResult();
                 result.extractedText = extractedText;
                 results.add(result);

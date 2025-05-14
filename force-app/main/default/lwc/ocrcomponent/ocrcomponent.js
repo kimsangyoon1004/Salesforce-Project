@@ -17,7 +17,7 @@ export default class OcrComponent extends LightningElement {
 
     wiredLeadData;
 
-    // ✅ OCR 데이터를 Lead에서 불러오기
+    //  OCR 데이터를 Lead에서 불러오기
     @wire(getRecord, { recordId: "$recordId", fields: FIELDS })
     wiredLead(result) {
         this.wiredLeadData = result;
@@ -27,7 +27,7 @@ export default class OcrComponent extends LightningElement {
                 this.imageUrl = result.data.fields.Business_Certification_Image__c.value;
             }
 
-            // ✅ 저장된 OCR 결과 불러오기
+            // 저장된 OCR 결과 불러오기
             if (result.data.fields?.Extracted_Text__c?.value) {
                 try {
                     this.businessInfo = JSON.parse(result.data.fields.Extracted_Text__c.value);
@@ -40,7 +40,7 @@ export default class OcrComponent extends LightningElement {
         }
     }
 
-    // ✅ OCR 실행 버튼 클릭 시 처리
+    //  OCR 실행 버튼 클릭 시 처리
     extractTextFromImage() {
         if (!this.imageUrl) {
             this.error = "OCR 실행을 위한 이미지 URL이 없습니다.";
@@ -61,7 +61,7 @@ export default class OcrComponent extends LightningElement {
                         "개업연월일": this.businessInfo.개업연월일 || "정보 없음"
                     };
 
-                    this.updateLeadRecord(); // ✅ OCR 결과를 Lead에 저장
+                    this.updateLeadRecord(); // OCR 결과를 Lead에 저장
                 } catch (error) {
                     this.businessInfo = {};
                 }
@@ -74,7 +74,7 @@ export default class OcrComponent extends LightningElement {
             });
     }
 
-    // ✅ OCR 결과를 Lead에 저장하는 함수
+    // OCR 결과를 Lead에 저장하는 함수
     updateLeadRecord() {
         if (!this.recordId) return;
 

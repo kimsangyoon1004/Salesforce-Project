@@ -18,7 +18,7 @@ public with sharing class ImageSharpnessEvaluator {
             request.setEndpoint(CLOUD_RUN_API_URL);
             request.setMethod('POST');
             request.setHeader('Content-Type', 'application/json');
-            request.setTimeout(120000); // ⏳ 타임아웃을 120초로 증가
+            request.setTimeout(120000); //  타임아웃을 120초로 증가
 
             String requestBody = '{"image_url": "' + fileName + '"}';
             request.setBody(requestBody);

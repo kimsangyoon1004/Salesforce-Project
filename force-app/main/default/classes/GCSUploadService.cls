@@ -4,7 +4,7 @@ public with sharing class GCSUploadService {
     public static String getSignedUrl(String fileName, String contentType) {
         try {
             String bucketName = 'leadimageupload';
-            String method = 'PUT'; // ✅ 반드시 PUT 허용해야 함!!
+            String method = 'PUT'; 
             
             String signedUrl = 'https://storage.googleapis.com/' + bucketName + '/' + fileName + '?signed=true&method=' + method;
             return signedUrl;
